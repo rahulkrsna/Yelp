@@ -18,10 +18,11 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var reviewsCountLabel: UILabel!
+    var index:Int!
     
     var business: Business! {
         didSet {
-            nameLabel.text = business.name
+            nameLabel.text = "\(index+1). " + business.name!
             locationLabel.text = business.address
             categoryLabel.text = business.categories
             distanceLabel.text = business.distance
@@ -35,12 +36,21 @@ class BusinessCell: UITableViewCell {
         // Initialization code
         thumbImageView.layer.cornerRadius = 3
         thumbImageView.clipsToBounds = true
+        
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    //In case of layout rotation.
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.width
     }
 
 }
