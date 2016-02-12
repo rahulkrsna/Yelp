@@ -135,6 +135,7 @@
                     <navigationItem key="navigationItem" id="mm4-r7-DFq"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="navigationView" destination="mm4-r7-DFq" id="5Dw-Mc-uHH"/>
                         <outlet property="tableView" destination="XwJ-BG-sVA" id="hLw-RX-CYX"/>
                     </connections>
                 </viewController>
