@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
 
     var businesses: [Business]!
     var filteredBusiness: [Business]!
@@ -28,20 +28,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         searchBar.sizeToFit()
         searchBar.delegate = self
         
-        
         self.navigationView.titleView = searchBar
         
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            self.filteredBusiness = businesses
-            self.tableView.reloadData()
-            
-//            for business in businesses {
-//                print(business.name!)
-//                print(business.address!)
-//            }
-        })
-
+        requestRestuarants()
+        
 /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -54,10 +44,31 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 */
 
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func requestRestuarants() {
+        
+        var offset:Int = 0
+        if(businesses != nil) {
+            offset = businesses.count
+        }
+        Business.searchWithTermAndOffset("Thai", offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            
+            self.isMoreDataLoading = false
+            if(self.businesses == nil) {
+                self.businesses = businesses
+                self.filteredBusiness = businesses
+                self.tableView.reloadData()
+            } else if( businesses != nil && businesses.count > 0){
+                self.businesses.appendContentsOf(businesses)
+                self.filteredBusiness = self.businesses
+                self.tableView.reloadData()
+            }
+        })
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,14 +100,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-        print("11")
         filteredBusiness = [Business]()
         if searchText.isEmpty == false {
-            print("12")
             for (_, restaurant) in (businesses?.enumerate())! {
-                print("13 \(restaurant.name) : \(searchText)")
-                if((restaurant.name?.lowercaseString.containsString(searchText.lowercaseString)) != nil) {
-                    print("14")
+                let name = restaurant.name!
+                if(name.lowercaseString.containsString(searchText.lowercaseString)) {
                     filteredBusiness.append(restaurant)
                 }
             }
@@ -112,13 +120,29 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        print("2222")
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
         
         filteredBusiness = businesses
         tableView.reloadData()
+    }
+    
+    var isMoreDataLoading = false
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if(!isMoreDataLoading) {
+            
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - (3 * tableView.bounds.size.height)
+            
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isMoreDataLoading = true
+                
+                requestRestuarants()
+            }
+        }
     }
 
 }
