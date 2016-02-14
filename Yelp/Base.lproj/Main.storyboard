@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="15" width="320" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" rowHeight="86" id="YiS-F3-n4V" customClass="BusinessCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" rowHeight="86" id="YiS-F3-n4V" customClass="BusinessCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YiS-F3-n4V" id="k3L-rg-iz4">
@@ -56,6 +56,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza, Pizza, Pizza" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozl-j4-eRn">
                                                     <rect key="frame" x="81" y="65" width="231" height="16"/>
+                                                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -107,7 +108,8 @@
                                                 <constraint firstAttribute="trailing" secondItem="Wr3-Kr-hDt" secondAttribute="trailing" constant="8" id="vHF-uM-7xB"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.98640703914141414" green="0.93189819061531054" blue="0.59126272447668526" alpha="0.37" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <color key="tintColor" red="0.8009390783" green="0.40012636699999998" blue="0.0040928059019999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="categoryLabel" destination="Ozl-j4-eRn" id="RTK-ec-jZd"/>
                                             <outlet property="distanceLabel" destination="fUo-5C-RUt" id="auc-i4-qTF"/>
@@ -125,7 +127,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.93680950129999996" green="0.12859449110000001" blue="0.074114451319999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.81855666039999997" green="0.77646441570000002" blue="0.45783879230000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="XwJ-BG-sVA" secondAttribute="bottom" id="G8P-Za-Twc"/>
                             <constraint firstItem="XwJ-BG-sVA" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" constant="15" id="TS9-tY-hBX"/>
@@ -133,7 +135,22 @@
                             <constraint firstAttribute="trailing" secondItem="XwJ-BG-sVA" secondAttribute="trailing" id="rXT-sw-gm3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mm4-r7-DFq"/>
+                    <navigationItem key="navigationItem" id="mm4-r7-DFq">
+                        <barButtonItem key="leftBarButtonItem" id="cCT-gr-gQ7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="f7Q-bH-9vx">
+                                <rect key="frame" x="16" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.15480631759999999" green="0.27077541240000003" blue="0.27477904040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Filter">
+                                    <color key="titleColor" red="0.81855666039999997" green="0.77646441570000002" blue="0.45783879230000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="paV-E8-VsU" kind="push" id="X4n-dJ-kHe"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="navigationView" destination="mm4-r7-DFq" id="5Dw-Mc-uHH"/>
@@ -142,7 +159,62 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763.73333333333335" y="338.90666666666664"/>
+            <point key="canvasLocation" x="762" y="343"/>
+        </scene>
+        <!--Filter-->
+        <scene sceneID="Tfe-JK-7Nr">
+            <objects>
+                <viewController id="paV-E8-VsU" customClass="FiltersViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yxI-SO-Iwo"/>
+                        <viewControllerLayoutGuide type="bottom" id="kYI-jw-FbO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h6W-ut-gyh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Am0-Sp-KzK">
+                                <rect key="frame" x="0.0" y="93" width="320" height="29"/>
+                                <color key="backgroundColor" red="0.81855666039999997" green="0.77646441570000002" blue="0.45783879230000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="Italian"/>
+                                    <segment title="American"/>
+                                    <segment title="Indian"/>
+                                    <segment title="Chinese"/>
+                                    <segment title="Thai"/>
+                                    <segment title="Custom "/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="actionToChooseAFilter:" destination="paV-E8-VsU" eventType="valueChanged" id="dm4-Q9-3VX"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LrF-6r-nli">
+                                <rect key="frame" x="20" y="154" width="280" height="30"/>
+                                <color key="backgroundColor" red="0.81855666039999997" green="0.77646441570000002" blue="0.45783879230000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Am0-Sp-KzK" secondAttribute="trailing" id="51T-ay-bEA"/>
+                            <constraint firstItem="Am0-Sp-KzK" firstAttribute="leading" secondItem="h6W-ut-gyh" secondAttribute="leading" id="8tx-06-cxj"/>
+                            <constraint firstAttribute="trailing" secondItem="LrF-6r-nli" secondAttribute="trailing" constant="20" id="IhF-Wp-N4C"/>
+                            <constraint firstItem="LrF-6r-nli" firstAttribute="top" secondItem="Am0-Sp-KzK" secondAttribute="bottom" constant="33" id="ZkF-EV-qaO"/>
+                            <constraint firstItem="LrF-6r-nli" firstAttribute="leading" secondItem="h6W-ut-gyh" secondAttribute="leading" constant="20" id="eWb-kn-ZYW"/>
+                            <constraint firstItem="Am0-Sp-KzK" firstAttribute="top" secondItem="yxI-SO-Iwo" secondAttribute="bottom" constant="29" id="ikT-da-QxI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Filter" id="EwX-ns-MWz"/>
+                    <connections>
+                        <outlet property="customFilter" destination="LrF-6r-nli" id="Z5k-if-gLb"/>
+                        <outlet property="segmentedView" destination="Am0-Sp-KzK" id="mzi-jc-fGu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6KU-Fj-cXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1151" y="343"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ovr-Q5-WNV">

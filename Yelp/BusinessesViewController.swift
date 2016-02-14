@@ -8,13 +8,20 @@
 
 import UIKit
 
+let filterKey = "choosenFilter"
+let customFilterKey = "customFilterString"
+
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
 
-    var businesses: [Business]!
-    var filteredBusiness: [Business]!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationView: UINavigationItem!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
+    var businesses: [Business]!
+    var filteredBusiness: [Business]!
     var searchBar: UISearchBar!
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let searchItems:[String] = ["Italian","American","Indian","Chinese","Thai","Custom"]
+    var choosenFilter:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +34,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         searchBar = UISearchBar()
         searchBar.sizeToFit()
         searchBar.delegate = self
+        searchBar.placeholder = "Restaurant"
         
         self.navigationView.titleView = searchBar
-        
-        requestRestuarants()
         
 /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
@@ -45,21 +51,40 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 
     }
     
+    override func viewDidAppear(animated: Bool) {
+
+        if let filter:Int = defaults.integerForKey(filterKey) {
+            choosenFilter = filter
+        } else {
+            defaults.setInteger(choosenFilter, forKey: filterKey)
+        }
+        requestRestuarants(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func requestRestuarants() {
+    func requestRestuarants(resetFlag: Bool) {
         
         var offset:Int = 0
         if(businesses != nil) {
             offset = businesses.count
         }
-        Business.searchWithTermAndOffset("Thai", offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        var searchTerm = searchItems[choosenFilter]
+        if(choosenFilter == 5) {
+            if let term = defaults.stringForKey(customFilterKey) {
+                searchTerm = term
+            } else {
+                searchTerm = searchItems[0]
+            }
+        }
+        
+        Business.searchWithTermAndOffset(searchTerm, offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             
             self.isMoreDataLoading = false
-            if(self.businesses == nil) {
+            if(self.businesses == nil || resetFlag == true) {
                 self.businesses = businesses
                 self.filteredBusiness = businesses
                 self.tableView.reloadData()
@@ -85,18 +110,20 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell", forIndexPath: indexPath) as! BusinessCell
         cell.index = indexPath.row
         cell.business = filteredBusiness[indexPath.row]
-
+        cell.contentView.layer.borderColor = UIColor.redColor().CGColor
+        cell.contentView.layer.borderWidth = 0.5
         return cell
     }
+    
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
     }
     */
+
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -140,7 +167,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
                 isMoreDataLoading = true
                 
-                requestRestuarants()
+                requestRestuarants(false)
             }
         }
     }
