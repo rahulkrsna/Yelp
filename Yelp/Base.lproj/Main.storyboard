@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XwJ-BG-sVA">
-                                <rect key="frame" x="0.0" y="15" width="320" height="553"/>
+                                <rect key="frame" x="0.0" y="15" width="320" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" rowHeight="86" id="YiS-F3-n4V" customClass="BusinessCell" customModule="Yelp" customModuleProvider="target">
@@ -126,31 +126,52 @@
                                     <outlet property="delegate" destination="2xI-yr-O5N" id="qlR-rj-NaP"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGl-Di-OJa">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="cCT-gr-gQ7">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="f7Q-bH-9vx">
+                                            <rect key="frame" x="16" y="7" width="71" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <state key="normal" title="Filter">
+                                                <color key="titleColor" red="0.767578125" green="0.11912361910736906" blue="0.040473293488605837" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="paV-E8-VsU" kind="push" id="X4n-dJ-kHe"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="hCO-ur-vL1"/>
+                                    <barButtonItem title="Item" id="ptL-vc-QUN">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lNd-VK-fPR">
+                                            <rect key="frame" x="233" y="7" width="71" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <state key="normal" title="Map">
+                                                <color key="titleColor" red="0.767578125" green="0.11912361909999999" blue="0.040473293489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="L9J-bk-kz8" kind="push" id="XoW-xH-DkY"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.81855666039999997" green="0.77646441570000002" blue="0.45783879230000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="XwJ-BG-sVA" secondAttribute="bottom" id="G8P-Za-Twc"/>
+                            <constraint firstItem="cGl-Di-OJa" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="0A6-cy-pZG"/>
                             <constraint firstItem="XwJ-BG-sVA" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" constant="15" id="TS9-tY-hBX"/>
+                            <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="cGl-Di-OJa" secondAttribute="bottom" id="VXF-eU-L35"/>
+                            <constraint firstItem="cGl-Di-OJa" firstAttribute="top" secondItem="XwJ-BG-sVA" secondAttribute="bottom" id="gVK-Ic-2kN"/>
                             <constraint firstItem="XwJ-BG-sVA" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="pzu-JS-JlO"/>
                             <constraint firstAttribute="trailing" secondItem="XwJ-BG-sVA" secondAttribute="trailing" id="rXT-sw-gm3"/>
+                            <constraint firstAttribute="trailing" secondItem="cGl-Di-OJa" secondAttribute="trailing" id="yep-Iz-2q7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mm4-r7-DFq">
-                        <barButtonItem key="leftBarButtonItem" id="cCT-gr-gQ7">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="f7Q-bH-9vx">
-                                <rect key="frame" x="16" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.15480631759999999" green="0.27077541240000003" blue="0.27477904040000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Filter">
-                                    <color key="titleColor" red="0.81855666039999997" green="0.77646441570000002" blue="0.45783879230000002" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="paV-E8-VsU" kind="push" id="X4n-dJ-kHe"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="mm4-r7-DFq"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="navigationView" destination="mm4-r7-DFq" id="5Dw-Mc-uHH"/>
@@ -160,6 +181,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="762" y="343"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="RD0-fC-CAa">
+            <objects>
+                <viewController id="L9J-bk-kz8" customClass="MapViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6sj-Bz-ByV"/>
+                        <viewControllerLayoutGuide type="bottom" id="DG8-KP-PZC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5bE-vL-o0x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hid-qv-cMc">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hid-qv-cMc" firstAttribute="leading" secondItem="5bE-vL-o0x" secondAttribute="leading" id="36q-Fy-A9s"/>
+                            <constraint firstAttribute="trailing" secondItem="hid-qv-cMc" secondAttribute="trailing" id="9YA-vJ-PD6"/>
+                            <constraint firstItem="DG8-KP-PZC" firstAttribute="top" secondItem="hid-qv-cMc" secondAttribute="bottom" id="KEM-O3-JYG"/>
+                            <constraint firstItem="hid-qv-cMc" firstAttribute="top" secondItem="6sj-Bz-ByV" secondAttribute="bottom" constant="-44" id="rDd-pc-n9H"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mar-4b-L3w"/>
+                    <connections>
+                        <outlet property="mapView" destination="hid-qv-cMc" id="KJG-QP-gVG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Df5-Y2-Jet" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="973"/>
         </scene>
         <!--Filter-->
         <scene sceneID="Tfe-JK-7Nr">

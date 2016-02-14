@@ -16,6 +16,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationView: UINavigationItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    
     var businesses: [Business]!
     var filteredBusiness: [Business]!
     var searchBar: UISearchBar!
@@ -37,7 +38,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         searchBar.placeholder = "Restaurant"
         
         self.navigationView.titleView = searchBar
-        
 /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -115,14 +115,29 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
+        
+        let button = sender as! UIButton
+        if button.titleLabel?.text == "Map" {
+        
+            let mapViewController = segue.destinationViewController as! MapViewController
+            var addresses:[String] = []
+            var titles:[String] = []
+            
+            for restaurant in businesses {
+                addresses.append((restaurant.address)!)
+                titles.append((restaurant.name)!)
+            }
+            
+            mapViewController.addresses = addresses
+            mapViewController.titles = titles
+        }
     }
-    */
+    
 
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

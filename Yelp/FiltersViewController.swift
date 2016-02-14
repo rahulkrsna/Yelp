@@ -15,9 +15,10 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var customFilter: UITextField!
     @IBOutlet weak var segmentedView: UISegmentedControl!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let choosenFilter:Int = defaults.integerForKey(filterKey) {
             segmentedView.selectedSegmentIndex = choosenFilter
         } else {
@@ -41,6 +42,10 @@ class FiltersViewController: UIViewController {
                 customFilter.text = ""
             }
         }
+    }
+    
+    func done() {
+        
     }
     
     override func didReceiveMemoryWarning() {
