@@ -107,6 +107,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="Wr3-Kr-hDt" secondAttribute="trailing" constant="8" id="vHF-uM-7xB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.98640703914141414" green="0.93189819061531054" blue="0.59126272447668526" alpha="0.37" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="categoryLabel" destination="Ozl-j4-eRn" id="RTK-ec-jZd"/>
                                             <outlet property="distanceLabel" destination="fUo-5C-RUt" id="auc-i4-qTF"/>
@@ -124,7 +125,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93680950129999996" green="0.12859449110000001" blue="0.074114451319999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="XwJ-BG-sVA" secondAttribute="bottom" id="G8P-Za-Twc"/>
                             <constraint firstItem="XwJ-BG-sVA" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" constant="15" id="TS9-tY-hBX"/>

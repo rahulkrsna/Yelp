@@ -144,5 +144,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        print("\(indexPath.row)")
+//        if(indexPath.row % 2 == 0) {
+//            cell.backgroundColor = UIColor.whiteColor()
+//        }
+//    }
 
 }
