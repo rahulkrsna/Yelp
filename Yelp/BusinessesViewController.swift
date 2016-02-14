@@ -131,7 +131,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var isMoreDataLoading = false
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        if(!isMoreDataLoading) {
+        if(!isMoreDataLoading && searchBar.showsCancelButton == false) {
             
             // Calculate the position of one screen length before the bottom of the results
             let scrollViewContentHeight = tableView.contentSize.height
