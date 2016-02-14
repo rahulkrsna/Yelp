@@ -38,7 +38,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+1. I wanted to create different backgrounds for the table view cells, alternate rows with a different background, but couldn’t get it working at the end. When I applied the background, it is shown only on the rows that is currently visible, if we scroll then the backgrounds are not applied. Finally I switched to just adding a border to every cell.
+2. I wanted to change the buttons on the navigation bar(items bar) to be oval shaped but when it was initially on the navigation bar, I wasn’t able to do it.
+3. Once I navigate from the view with tableView to another page and comeback, for some reason the viewdidLoad() method is not called on my, so I had to place the API call in the viewDidAppear() for the updates to occur, but I am not completely satisfied with placing that control inside viewDidAppear(). Still to find a better approach here.
+
 
 ## License
 
